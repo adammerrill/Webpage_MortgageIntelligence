@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MorTru - Home Financing Intelligence</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1a365d;
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.5;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(26, 54, 93, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-image {
+            height: 32px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu-list {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu-item a,
+        .nav-menu-trigger {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-menu-item a:hover,
+        .nav-menu-trigger:hover {
+            opacity: 1;
+        }
+
+        .nav-menu-trigger {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .caret-icon path {
+            stroke: currentColor;
+        }
+
+        .sign-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .login-link {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .login-link:hover {
+            opacity: 1;
+        }
+
+        .signup-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .signup-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hero {
+            min-height: calc(100vh - 80px);
+            margin-top: 80px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: minmax(500px, 1fr) minmax(400px, 1fr);
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 2;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text {
+            max-width: 600px;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            gap: 0.75rem;
+            background: rgba(66, 153, 225, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(66, 153, 225, 0.2);
+            position: relative;
+        }
+
+        .hero-badge::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 2rem;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.4), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        .hero-badge-text {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #63b3ed;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+        }
+
+        .hero-badge-text:first-child {
+            color: #90cdf4;
+            background: linear-gradient(135deg, #90cdf4, #4299e1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .hero-cta-button {
+            padding: 0.875rem 2rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 180px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+            letter-spacing: 0.025em;
+            gap: 0.75rem;
+        }
+
+        .hero-cta-primary {
+            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+            position: relative;
+        }
+
+        .hero-cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(66, 153, 225, 0.4);
+        }
+
+        .button-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(66, 153, 225, 0.4) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+
+        .button-shine {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0) 45%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0) 55%,
+                transparent 100%
+            );
+            transform: translateX(-100%);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-cta-primary:hover .button-shine {
+            transform: translateX(100%);
+        }
+
+        .hero-cta-primary:hover .button-glow {
+            opacity: 1;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-cta-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .arrow-icon {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            top: 1px;
+        }
+
+        .hero-cta-secondary:hover .arrow-icon {
+            transform: translateX(4px);
+        }
+
+        .arrow-icon path {
+            stroke-dasharray: 20;
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 0.3s ease;
+        }
+
+        .hero-cta-secondary:hover .arrow-icon path {
+            stroke-dashoffset: -20;
+            animation: arrow-dash 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes arrow-dash {
+            from {
+                stroke-dashoffset: 20;
+            }
+            to {
+                stroke-dashoffset: -20;
+            }
+        }
+
+        .floating-houses {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-house {
+            position: absolute;
+            opacity: 0.4;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, opacity;
+        }
+
+        .floating-house .house-icon {
+            stroke: rgba(255, 255, 255, 0.2);
+            stroke-width: 1.5;
+            fill: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        }
+
+        .floating-house:hover {
+            opacity: 0.8;
+            transform: scale(1.1) translateY(-10px);
+        }
+
+        .floating-house:hover .house-icon {
+            stroke: rgba(255, 255, 255, 0.4);
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+        }
+
+        @keyframes float-animation {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-15px) rotate(2deg);
+            }
+            67% {
+                transform: translateY(-5px) rotate(-1deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        .floating-house {
+            animation: float-animation 8s ease-in-out infinite;
+        }
+
+        .floating-house:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .floating-house:nth-child(2) {
+            animation-delay: -2.666s;
+        }
+
+        .floating-house:nth-child(3) {
+            animation-delay: -5.333s;
+        }
+
+        /* Add glowing effect */
+        .floating-house::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(66, 153, 225, 0.1) 0%, transparent 70%);
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .floating-house:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        /* Customer section */
+        .customer-section {
+            grid-column: 1 / -1;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .customer-logos {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-illustration {
+                margin-left: 0;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .floating-houses {
+                display: none;
+            }
+
+            .customer-logos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-badge {
+                flex-wrap: wrap;
+            }
+
+            .role-nav {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 1rem;
+            }
+        }
+        /* Hero Badge */
+        .hero-badge {
+            display: inline-flex;
+            gap: 0.5rem;
+            background: rgba(66, 153, 225, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(66, 153, 225, 0.2);
+        }
+
+        .hero-badge-text {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #63b3ed;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Role Selector */
+        .role-selector {
+            margin: 2rem 0;
+            position: relative;
+            z-index: 3;
+        }
+
+        .role-nav {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            margin: 0 -0.5rem;
+            padding: 0.5rem;
+        }
+
+        .role-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .role-button {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 1.25rem;
+            border-radius: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            white-space: nowrap;
+            flex-shrink: 0;
+            backdrop-filter: blur(4px);
+        }
+
+        .role-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.5);
+        }
+
+        .role-button::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 1.5rem;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.5), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .role-button::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 1.5rem;
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .role-button:hover {
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .role-button:hover::before {
+            opacity: 1;
+        }
+
+        .role-button:hover::after {
+            opacity: 1;
+        }
+
+        .role-button.active {
+            background: rgba(66, 153, 225, 0.15);
+            color: white;
+            border-color: rgba(66, 153, 225, 0.4);
+            box-shadow: 
+                0 4px 12px rgba(66, 153, 225, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .role-button.active::before {
+            opacity: 1;
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.6), transparent);
+        }
+
+        .role-button.active::after {
+            opacity: 1;
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.2), transparent);
+        }
+
+        /* Customer Logos */
+        .customer-logos {
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .customer-logos-text {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .customer-logos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .customer-logos-grid img {
+            max-width: 120px;
+            height: auto;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            filter: grayscale(100%) brightness(200%);
+        }
+
+        .customer-logos-grid img:hover {
+            opacity: 0.8;
+        }
+
+        /* Analytics Dashboard */
+        .hero-illustration {
+            position: relative;
+            margin-left: 4rem;
+            filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.2));
+            transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-illustration:hover {
+            transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+        }
+
+        .analytics-dashboard {
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            animation: float 6s ease-in-out infinite;
+            backdrop-filter: blur(8px);
+        }
+
+        .chart-elements path {
+            transition: all 0.3s ease;
+        }
+
+        .hero-illustration:hover .chart-elements path {
+            stroke-width: 3;
+            filter: url(#glow);
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                filter: brightness(1) blur(3px);
+            }
+            50% {
+                filter: brightness(1.2) blur(4px);
+            }
+        }
+
+        .hero-illustration:hover .chart-elements path[filter="url(#glow)"] {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                flex-direction: column;
+            }
+
+            .hero-illustration {
+                margin-left: 0;
+                margin-top: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .role-nav {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a aria-label="Go to homepage" class="header-logo" href="/">
+            <img src="assets/logo.svg" alt="MorTru Logo" class="logo-image">
+        </a>
+        <nav aria-label="Main" class="nav-menu">
+            <div class="nav-menu-container">
+                <ul class="nav-menu-list">
+                    <li class="nav-menu-item">
+                        <button class="nav-menu-trigger">
+                            Product
+                            <svg class="caret-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                <path d="M9.75 4.125L6 7.875L2.25 4.125" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </button>
+                    </li>
+                    <li class="nav-menu-item">
+                        <a href="/pricing">Pricing</a>
+                    </li>
+                    <li class="nav-menu-item">
+                        <a href="/docs">Docs</a>
+                    </li>
+                    <li class="nav-menu-item">
+                        <button class="nav-menu-trigger">
+                            Company
+                            <svg class="caret-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                <path d="M9.75 4.125L6 7.875L2.25 4.125" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="sign-section">
+            <a href="/login" class="login-link">Log in</a>
+            <a href="/signup" class="signup-button">
+                <span class="button-content">
+                    <span class="circle-mask"></span>
+                    Sign up
+                </span>
+            </a>
+        </div>
+        <button aria-label="Open mobile menu" class="burger-button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M3 18H21" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"></path>
+                <path d="M3 12H21" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"></path>
+                <path d="M3 6H21" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"></path>
+            </svg>
+        </button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-bg">
+                <!-- Background gradient handled by CSS -->
+            </div>
+
+            <div class="floating-houses">
+                <!-- House Icon 1 -->
+                <svg class="floating-house" style="top: 15%; left: 10%" width="48" height="48" viewBox="0 0 48 48">
+                    <path class="house-icon" d="M24 4L4 20h4v24h32V20h4L24 4zm12 36H12V18l12-10 12 10v22z"/>
+                </svg>
+                
+                <!-- House Icon 2 -->
+                <svg class="floating-house" style="top: 35%; right: 15%" width="48" height="48" viewBox="0 0 48 48">
+                    <path class="house-icon" d="M24 2L2 18h6v28h32V18h6L24 2zm16 42H8V16l16-12 16 12v28z"/>
+                </svg>
+                
+                <!-- House Icon 3 -->
+                <svg class="floating-house" style="bottom: 25%; left: 20%" width="48" height="48" viewBox="0 0 48 48">
+                    <path class="house-icon" d="M24 6L6 24h4v18h8V30h12v12h8V24h4L24 6zm0 14c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                </svg>
+            </div>
+
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="hero-badge-text">NEW</span>
+                        <span class="hero-badge-text">AI</span>
+                        <span class="hero-badge-text">2024</span>
+                    </div>
+
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            Next Generation<br>
+                            Home Financing
+                        </h1>
+
+                        <p class="hero-subtitle">
+                            Transform your mortgage experience with AI-powered analytics, real-time market insights, and intelligent automation.
+                        </p>
+                    </div>
+
+                    <div class="role-selector">
+                        <div class="role-nav" role="tablist">
+                            <button class="role-button active" role="tab" aria-selected="true">Consumer</button>
+                            <button class="role-button" role="tab">Home Buyer</button>
+                            <button class="role-button" role="tab">Real Estate Agent</button>
+                            <button class="role-button" role="tab">Loan Officer</button>
+                            <button class="role-button" role="tab">Mortgage Lender</button>
+                        </div>
+                    </div>
+
+                    <div class="hero-cta">
+                        <a href="#get-started" class="hero-cta-button hero-cta-primary">
+                            Get Started Free
+                            <span class="button-glow"></span>
+                            <span class="button-shine"></span>
+                        </a>
+                        <a href="#documentation" class="hero-cta-button hero-cta-secondary">
+                            Documentation
+                            <svg class="arrow-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-illustration">
+                    <svg width="540" height="400" viewBox="0 0 540 400" class="analytics-dashboard">
+                        <defs>
+                            <linearGradient id="chart-gradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="rgba(66, 153, 225, 0.3)"/>
+                                <stop offset="100%" stop-color="rgba(66, 153, 225, 0.1)"/>
+                            </linearGradient>
+                            <linearGradient id="highlight-gradient" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="rgba(255, 255, 255, 0.1)"/>
+                                <stop offset="100%" stop-color="rgba(255, 255, 255, 0.05)"/>
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Dashboard Background -->
+                        <rect width="540" height="400" rx="12" fill="rgba(255, 255, 255, 0.05)"/>
+                        <rect x="1" y="1" width="538" height="398" rx="11" 
+                              stroke="rgba(255, 255, 255, 0.1)" 
+                              stroke-width="1" 
+                              fill="none"/>
+                        
+                        <!-- Chart Elements -->
+                        <g class="chart-elements" transform="translate(40, 40)">
+                            <!-- Header Bar -->
+                            <rect width="460" height="40" rx="6" fill="url(#highlight-gradient)"/>
+                            
+                            <!-- Main Charts -->
+                            <g transform="translate(0, 60)">
+                                <!-- Chart 1 -->
+                                <rect width="200" height="80" rx="6" fill="url(#chart-gradient)"/>
+                                <path d="M20,40 L60,20 L100,50 L140,30 L180,45" 
+                                      stroke="rgba(255, 255, 255, 0.6)" 
+                                      stroke-width="2"
+                                      fill="none"
+                                      filter="url(#glow)"/>
+                                
+                                <!-- Chart 2 -->
+                                <rect x="220" width="240" height="80" rx="6" fill="url(#highlight-gradient)"/>
+                                <path d="M240,40 L280,60 L320,20 L360,50 L400,30 L440,45" 
+                                      stroke="rgba(66, 153, 225, 0.6)" 
+                                      stroke-width="2"
+                                      fill="none"
+                                      filter="url(#glow)"/>
+                            </g>
+                            
+                            <!-- Bottom Section -->
+                            <g transform="translate(0, 160)">
+                                <rect width="460" height="160" rx="6" fill="url(#highlight-gradient)"/>
+                                <!-- Data Points -->
+                                <g transform="translate(20, 40)" stroke="rgba(66, 153, 225, 0.4)" fill="none">
+                                    <circle cx="0" cy="60" r="4"/>
+                                    <circle cx="88" cy="40" r="4"/>
+                                    <circle cx="176" cy="80" r="4"/>
+                                    <circle cx="264" cy="30" r="4"/>
+                                    <circle cx="352" cy="50" r="4"/>
+                                    <circle cx="440" cy="20" r="4"/>
+                                </g>
+                                <!-- Connecting Lines -->
+                                <path d="M40,100 L128,80 L216,120 L304,70 L392,90 L460,60" 
+                                      stroke="rgba(66, 153, 225, 0.4)" 
+                                      stroke-width="2"
+                                      stroke-dasharray="4 4"
+                                      fill="none"/>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="customer-section">
+                    <div class="customer-logos">
+                        <div class="customer-logos-text">TRUSTED BY LEADING LENDERS</div>
+                        <div class="customer-logos-grid">
+                            <img src="assets/logo-1.svg" alt="LoanPro" loading="lazy">
+                            <img src="assets/logo-2.svg" alt="MortgageX" loading="lazy">
+                            <img src="assets/logo-3.svg" alt="HomeFirst" loading="lazy">
+                            <img src="assets/logo-4.svg" alt="LendTech" loading="lazy">
+                            <img src="assets/logo-5.svg" alt="RealFin" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Debug script to check if CSS files are loading
+        document.addEventListener('DOMContentLoaded', () => {
+            const styles = document.styleSheets;
+            console.log('Loaded stylesheets:', styles.length);
+            for (let i = 0; i < styles.length; i++) {
+                try {
+                    console.log(`Stylesheet ${i}:`, styles[i].href);
+                } catch (e) {
+                    console.error(`Error loading stylesheet ${i}:`, e);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+/* MorTru Design System */
+
+:root {
+    /* Base Units */
+    --base-unit: 16px;
+    --base-rem: 1rem;  /* 16px */
+    
+    /* Colors */
+    --color-primary: #00A3B3;        /* Teal - Primary brand color */
+    --color-primary-dark: #007A85;
+    --color-primary-light: #E6F7F9;
+    
+    --color-secondary: #1E4D8C;      /* Navy - Secondary brand color */
+    --color-secondary-dark: #153661;
+    --color-secondary-light: #E9EFF7;
+    
+    --color-tertiary: #27CA68;       /* Green - Success/positive actions */
+    --color-tertiary-dark: #0C4B31;
+    
+    /* Neutral Colors */
+    --color-black: #08090B;
+    --color-white: #FAFAFA;
+    --color-gray-100: #F8FAFC;
+    --color-gray-200: #E2E8F0;
+    --color-gray-300: #CBD5E1;
+    --color-gray-400: #94A3B8;
+    --color-gray-500: #64748B;
+    --color-gray-600: #475569;
+    --color-gray-700: #334155;
+    --color-gray-800: #1E293B;
+    --color-gray-900: #0F172A;
+    
+    /* Semantic Colors */
+    --color-success: var(--color-tertiary);
+    --color-warning: #FFA200;
+    --color-error: #FF4444;
+    --color-info: var(--color-secondary);
+    
+    /* Typography */
+    --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    
+    /* Font Sizes (rem) */
+    --text-xs: 0.75rem;     /* 12px */
+    --text-sm: 0.875rem;    /* 14px */
+    --text-base: 1rem;      /* 16px */
+    --text-lg: 1.125rem;    /* 18px */
+    --text-xl: 1.25rem;     /* 20px */
+    --text-2xl: 1.5rem;     /* 24px */
+    --text-3xl: 1.875rem;   /* 30px */
+    --text-4xl: 2.25rem;    /* 36px */
+    --text-5xl: 3rem;       /* 48px */
+    --text-6xl: 3.75rem;    /* 60px */
+    
+    /* Font Weights */
+    --font-thin: 100;
+    --font-light: 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    --font-extrabold: 800;
+    
+    /* Spacing (rem) - Based on 8px grid */
+    --space-1: 0.25rem;     /* 4px */
+    --space-2: 0.5rem;      /* 8px */
+    --space-3: 0.75rem;     /* 12px */
+    --space-4: 1rem;        /* 16px */
+    --space-5: 1.25rem;     /* 20px */
+    --space-6: 1.5rem;      /* 24px */
+    --space-8: 2rem;        /* 32px */
+    --space-10: 2.5rem;     /* 40px */
+    --space-12: 3rem;       /* 48px */
+    --space-16: 4rem;       /* 64px */
+    --space-20: 5rem;       /* 80px */
+    
+    /* Border Radius */
+    --radius-sm: 0.25rem;   /* 4px */
+    --radius-md: 0.5rem;    /* 8px */
+    --radius-lg: 1rem;      /* 16px */
+    --radius-xl: 1.5rem;    /* 24px */
+    --radius-2xl: 2rem;     /* 32px */
+    --radius-full: 9999px;
+    
+    /* Transitions */
+    --transition-fast: 170ms;
+    --transition-normal: 250ms;
+    --transition-slow: 350ms;
+    --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+    --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    
+    /* Z-index */
+    --z-below: -1;
+    --z-normal: 1;
+    --z-sticky: 100;
+    --z-dropdown: 200;
+    --z-modal: 300;
+    --z-toast: 400;
+    
+    /* Grid */
+    --grid-gap: var(--space-4);
+    --container-padding: var(--space-4);
+    --max-width: 80rem;     /* 1280px */
+}
+
+/* Media Query Breakpoints */
+@custom-media --mobile (max-width: 640px);
+@custom-media --tablet (max-width: 768px);
+@custom-media --laptop (max-width: 1024px);
+@custom-media --desktop (max-width: 1280px);
